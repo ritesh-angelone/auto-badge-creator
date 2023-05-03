@@ -1,7 +1,7 @@
 {
-  "name": "coverage-badge-creator",
-  "version": "1.0.17",
-  "description": "Coverage Badge Creator creates badges based on your test coverage and inserts them into the README",
+  "name": "auto-badge-creator",
+  "version": "1.0.0",
+  "description": "Auto Badge Creator creates badges based on various parameters and inserts them into the README.md file",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
