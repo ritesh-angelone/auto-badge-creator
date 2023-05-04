@@ -22,7 +22,7 @@ export class SetupValidation {
   static async loadConfig(): Promise<void> {
     console.info('\nStep 1 -> Loading Configurations process started');
     await Globals.loadArgv();
-    const configExist = SetupValidation.checkIfConfigFileExists();
+    const configExist = await SetupValidation.checkIfConfigFileExists();
     if (!configExist) return;
     return this.parseConfig();
   }
@@ -48,26 +48,27 @@ export class SetupValidation {
     });
   }
 
-  private static checkIfConfigFileExists(): boolean {
+  private static async checkIfConfigFileExists(): Promise<boolean> {
     let configExists: boolean = false;
     const config = cosmiconfig(Globals.CONFIG_IDENTIFIER);
-    config
-      .search()
-      .then((result) => {
-        // result.config is the parsed configuration object.
-        // result.filepath is the path to the config file that was found.
-        // result.isEmpty is true if there was nothing to parse in the config file.
-        if (result?.isEmpty || !result?.config) {
-          console.error(`❌ No Config found\nSkip...`);
-        } else {
-          console.info(`✅ Config found: ${result.filepath}`);
-          configExists = true;
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    return configExists;
+    return await config
+        .search()
+        .then((result) => {
+          // result.config is the parsed configuration object.
+          // result.filepath is the path to the config file that was found.
+          // result.isEmpty is true if there was nothing to parse in the config file.
+          if (result?.isEmpty || !result?.config) {
+            console.error(`❌ No Config found\nSkip...`);
+          } else {
+            console.info(`✅ Config found: ${result.filepath}`);
+            configExists = true;
+          }
+          return configExists;
+        })
+        .catch((error) => {
+          console.error(error);
+          return configExists;
+        });
   }
 
   private static checkFileExists(path: string, rejectMessage: string, resolveMessage: string) {
