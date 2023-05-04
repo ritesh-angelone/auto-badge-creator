@@ -13,7 +13,7 @@
     "jest:cache": "jest --clearCache",
     "build": "rm -rf lib/ && tsc",
     "start": "npm run build && node lib/index.js",
-    "dev": "nodemon",
+    "dev": "nodemon -- --config 'badge-config'",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
@@ -22,7 +22,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "release": "npm run cover && standard-version --no-verify",
-    "coverage:badge": "node lib/index.js --config './.conversion-badge-config'"
+    "coverage:badge": "node lib/index.js -- --config 'badge-config'"
   },
   "files": [
     "lib/",

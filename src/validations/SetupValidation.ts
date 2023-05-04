@@ -2,6 +2,7 @@ import { DependencyOptionsInterface } from '../interfaces/DependencyOptionsInter
 import { FileUtils } from '../utils/FileUtils';
 import { Globals } from '../Globals';
 import { cosmiconfig } from 'cosmiconfig';
+import type {CosmiconfigResult} from "cosmiconfig/dist/types";
 
 export class SetupValidation {
   static scan() {
@@ -24,27 +25,22 @@ export class SetupValidation {
     await Globals.loadArgv();
     const configExist = await SetupValidation.checkIfConfigFileExists();
     if (!configExist) return;
-    return this.parseConfig();
+    const parsedConfig: DependencyOptionsInterface = await this.getParsedConfig();
+    Globals.init(parsedConfig);
   }
 
-  private static parseConfig(): Promise<void> {
-    return new Promise((resolve, reject) => {
+  private static getParsedConfig(): Promise<DependencyOptionsInterface> {
+    return new Promise(async (resolve, reject) => {
       try {
-        const config = cosmiconfig(Globals.CONFIG_IDENTIFIER);
-        config
-          .search()
-          .then((result) => {
-            Globals.init(result?.config as DependencyOptionsInterface);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      } catch {
+        const cosmicConfig = cosmiconfig(Globals.CONFIG_IDENTIFIER);
+        const config: CosmiconfigResult = await cosmicConfig.search();
+        console.info('✅ Configuration loaded');
+        resolve(config?.config as DependencyOptionsInterface);
+      } catch(error) {
+        console.error(error);
         console.error(`❌ Parsing configuration file failed. Configuration is incorrect.`);
-        reject();
+        reject({});
       }
-      resolve();
-      console.info('✅ Configuration loaded');
     });
   }
 

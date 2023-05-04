@@ -13,5 +13,6 @@
       "logoColor": "black",
       "color": "red"
     }
-  }
+  },
+  "returnOnlyURL": true
 }

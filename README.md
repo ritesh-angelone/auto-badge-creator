@@ -98,7 +98,13 @@ yarn add --dev coverage-badge-creator
     
 
 ## Config
-There are various ways to configure the badges according to your wishes. To do this, you only need to create a new file called **.badge-config**. Then you have the following options:   
+There are various ways to provide configuration for the badges. This library supports CosmicConfig. Cosmiconfig will search up the directory tree for configuration in the following places (in that order):
+
+1. a 'auto-badge-creator' property in package.json
+2. a .auto-badge-creatorrc file in JSON or YAML format
+3. a .auto-badge-creatorrc.json, .auto-badge-creatorrc.yaml, .auto-badge-creatorrc.yml, .auto-badge-creatorrc.js, or .auto-badge-creatorrc.cjs file
+4. a auto-badge-creatorrc, auto-badge-creatorrc.json, auto-badge-creatorrc.yaml, auto-badge-creatorrc.yml, auto-badge-creatorrc.js or auto-badge-creatorrc.cjs file inside a .config subdirectory
+5. a auto-badge-creator.config.js or auto-badge-creator.config.cjs CommonJS module exporting an object
 
 _For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-creator/blob/main/.conversion-badge-config)._
 

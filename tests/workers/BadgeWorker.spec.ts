@@ -1,13 +1,14 @@
 import { createMock } from "ts-auto-mock";
 import { Badge } from "../../src/workers/BadgeWorker"
 import { BadgeStatsInterface } from "../../src/interfaces/BadgeStatsInterface";
+import {Globals} from "../../src/Globals";
 
 describe('Badge', () => {
 
   describe('#create', () => {
     it('should return a string', () => {
       const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
-      const result = Badge.create({}, statsMock, "")
+      const result = Badge.create({}, statsMock)
       expect(typeof result).toEqual('string');
       expect(result.length).toBeGreaterThan(0);
     })
@@ -36,8 +37,24 @@ describe('Badge', () => {
 
     it('should append prefix to string', () => {
       const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
-      const testString = `prefix=$Statements$`;
+      const testString = `prefix=$statements$`;
       const result = Badge.create({}, statsMock, "statements")
+      expect(result).toMatch(testString);
+    })
+
+    it('should return only url if returnOnlyURL is true', () => {
+      Globals.init({returnOnlyURL: true});
+      const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const testString: RegExp = /!\[\]\(.*\)/;
+      const result = Badge.create({}, statsMock)
+      expect(result).not.toMatch(testString);
+    })
+
+    it('should return full markdown if returnOnlyURL is false', () => {
+      Globals.init({returnOnlyURL: false});
+      const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const testString: RegExp = /!\[\]\(.*\)/;
+      const result = Badge.create({}, statsMock)
       expect(result).toMatch(testString);
     })
   })

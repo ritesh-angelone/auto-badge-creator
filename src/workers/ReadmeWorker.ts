@@ -31,7 +31,7 @@ export class Readme {
     let file: string = FileUtils.readFile(this.filePath);
 
     this.replacementAttributes.forEach((util) => {
-      const baseUrlPattern = StringUtils.replaceString('&PATTERN&', util.pattern, Globals.BADGE_BASE_URL_PATTERN);
+      const baseUrlPattern = StringUtils.replaceString('&PATTERN&', util.pattern, Globals.BASE_URL_PATTERN);
       const urlPattern = new RegExp(`(${baseUrlPattern})|(${util.pattern})`, 'gi');
       file = StringUtils.replaceString(urlPattern, util.url, file);
     });
