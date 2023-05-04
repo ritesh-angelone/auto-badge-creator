@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "coverage-badge-creator": "lib/index.js"
+    "auto-badge-creator": "lib/index.js"
   },
   "scripts": {
     "test": "jest --colors --coverage --config jestconfig.json",
