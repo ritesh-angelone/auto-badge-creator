@@ -1,3 +1,3 @@
 export enum ArgvOptionsEnum {
-  CONFIG_PATH = '--config',
+  CONFIG_IDENTIFIER = '--config',
 }

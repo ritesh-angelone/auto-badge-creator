@@ -1,7 +1,7 @@
 <h1>Coverage Badge Creator</h1>  
 <br>
 
-![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
+![](https://img.shields.io/badge/Coverage-97%25-83A603.svg?prefix=$coverage$)
 ![CI][ci]
 ![Build][build]
 ![Code-Style][code-style]

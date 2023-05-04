@@ -28,11 +28,11 @@ describe('Globals', () => {
 
   describe('loadArgv', () => {
     it('should change config path when passing the --config option', () => {
-      Globals.CONFIG_PATH = 'bar/foo.json';
-      process.argv = ['--config', 'foo/bar.json'];
+      Globals.CONFIG_IDENTIFIER = 'bar/foo';
+      process.argv = ['--config', 'foo/bar'];
 
       Globals.loadArgv();
-      expect(Globals.CONFIG_PATH).toEqual('foo/bar.json');
+      expect(Globals.CONFIG_IDENTIFIER).toEqual('foo/bar');
     })
   })
 })

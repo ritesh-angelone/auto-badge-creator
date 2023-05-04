@@ -29,14 +29,14 @@ describe('Badge', () => {
         coverage: 70,
         color: 'green'
       }
-      const testString = `Coverage-${statsObj.coverage}${encodeURI('%')}-${statsObj.color}.svg`;
+      const testString = `Statements-${statsObj.coverage}${encodeURI('%')}-${statsObj.color}.svg`;
       const result = Badge.create({}, statsObj, "statements")
       expect(result).toMatch(testString);
     })
 
     it('should append prefix to string', () => {
       const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
-      const testString = `prefix=$statements$`;
+      const testString = `prefix=$Statements$`;
       const result = Badge.create({}, statsMock, "statements")
       expect(result).toMatch(testString);
     })

@@ -3,7 +3,7 @@ import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
 
 export class Globals {
   private static instance: Globals;
-  static CONFIG_PATH = './.badge-config';
+  static CONFIG_IDENTIFIER = 'auto-badge-creator';
   static DEFAULT_COV_PATH = './coverage/coverage-summary.json';
   static COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
   static BADGE_BASE_URL = '![](https://img.shields.io/badge/';
@@ -37,6 +37,6 @@ export class Globals {
         }
       });
       resolve();
-    })
+    });
   }
 }
