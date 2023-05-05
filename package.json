@@ -22,7 +22,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "release": "npm run cover && standard-version --no-verify",
-    "coverage:badge": "node lib/index.js -- --config 'badge-config'"
+    "coverage:badge": "node lib/index.js"
   },
   "files": [
     "lib/",
@@ -40,13 +40,12 @@
     "mocha",
     "chai"
   ],
-  "author": "Henry Steinhauer",
-  "license": "MIT",
+  "author": "Angel One Limited",
   "repository": {
     "type": "git",
-    "url": "https://github.com/H3nSte1n/coverage-badge-creator"
+    "url": "https://github.com/ritesh-angelone/auto-badge-creator"
   },
-  "homepage": "https://github.com/H3nSte1n/coverage-badge-creator#readme",
+  "homepage": "https://github.com/ritesh-angelone/auto-badge-creator#readme",
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/node": "^14.14.21",
@@ -67,5 +66,8 @@
   },
   "dependencies": {
     "cosmiconfig": "^8.1.3"
+  },
+  "auto-badge-creator": {
+    "outputType": "url"
   }
 }

@@ -14,5 +14,5 @@
       "color": "red"
     }
   },
-  "returnOnlyURL": true
+  "outputType": "url"
 }

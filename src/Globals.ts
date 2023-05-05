@@ -1,11 +1,12 @@
 import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
 import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
+import { OutputType } from './enums/OutputType';
 
 export class Globals {
   private static instance: Globals;
   static CONFIG_IDENTIFIER = 'auto-badge-creator';
   static DEFAULT_COV_PATH = './coverage/coverage-summary.json';
-  static RETURN_ONLY_URL = false;
+  static OUTPUT_TYPE: OutputType = OutputType.MARKDOWN;
   static COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
   static BADGE_BASE_URL = 'https://img.shields.io/badge/';
   static BADGE_BASE_URL_PATTERN = 'https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&';
@@ -28,13 +29,23 @@ export class Globals {
     this.DEFAULT_COV_PATH = config?.coverage_file_path || this.DEFAULT_COV_PATH;
     this.BASE_README_PATH = config?.readmeFilePath || this.BASE_README_PATH;
     this.BADGES = config?.badges || this.BADGES;
-    this.RETURN_ONLY_URL = config?.returnOnlyURL ?? this.RETURN_ONLY_URL;
-    if(this.RETURN_ONLY_URL) {
-      this.BASE_URL = this.BADGE_BASE_URL;
-      this.BASE_URL_PATTERN = this.BADGE_BASE_URL_PATTERN;
-    } else {
-      this.BASE_URL = this.MARKDOWN_BASE_URL;
-      this.BASE_URL_PATTERN = this.MARKDOWN_BASE_URL_PATTERN;
+    this.OUTPUT_TYPE = config?.outputType ?? this.OUTPUT_TYPE;
+    this.setBaseUrls();
+  }
+
+  static setBaseUrls() {
+    switch (this.OUTPUT_TYPE) {
+      case OutputType.MARKDOWN:
+        this.BASE_URL = this.MARKDOWN_BASE_URL;
+        this.BASE_URL_PATTERN = this.MARKDOWN_BASE_URL_PATTERN;
+        break;
+      case OutputType.URL:
+        this.BASE_URL = this.BADGE_BASE_URL;
+        this.BASE_URL_PATTERN = this.BADGE_BASE_URL_PATTERN;
+        break;
+      default:
+        this.BASE_URL = this.MARKDOWN_BASE_URL;
+        this.BASE_URL_PATTERN = this.MARKDOWN_BASE_URL_PATTERN;
     }
   }
 

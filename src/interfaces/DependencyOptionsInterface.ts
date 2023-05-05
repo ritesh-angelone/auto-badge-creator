@@ -1,10 +1,11 @@
 import { BadgeOptionsObjectInterface } from './BadgeOptionsInterface';
+import { OutputType } from '../enums/OutputType';
 
 export interface DependencyOptionsInterface {
   badges?: ConfigBadge;
   coverage_file_path?: string;
   readmeFilePath?: string;
-  returnOnlyURL?: boolean;
+  outputType?: OutputType;
 }
 
 export interface ConfigBadge {

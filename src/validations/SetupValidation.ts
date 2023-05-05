@@ -2,7 +2,7 @@ import { DependencyOptionsInterface } from '../interfaces/DependencyOptionsInter
 import { FileUtils } from '../utils/FileUtils';
 import { Globals } from '../Globals';
 import { cosmiconfig } from 'cosmiconfig';
-import type {CosmiconfigResult} from "cosmiconfig/dist/types";
+import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 
 export class SetupValidation {
   static scan() {
@@ -36,7 +36,7 @@ export class SetupValidation {
         const config: CosmiconfigResult = await cosmicConfig.search();
         console.info('✅ Configuration loaded');
         resolve(config?.config as DependencyOptionsInterface);
-      } catch(error) {
+      } catch (error) {
         console.error(error);
         console.error(`❌ Parsing configuration file failed. Configuration is incorrect.`);
         reject({});
@@ -48,23 +48,23 @@ export class SetupValidation {
     let configExists: boolean = false;
     const config = cosmiconfig(Globals.CONFIG_IDENTIFIER);
     return await config
-        .search()
-        .then((result) => {
-          // result.config is the parsed configuration object.
-          // result.filepath is the path to the config file that was found.
-          // result.isEmpty is true if there was nothing to parse in the config file.
-          if (result?.isEmpty || !result?.config) {
-            console.error(`❌ No Config found\nSkip...`);
-          } else {
-            console.info(`✅ Config found: ${result.filepath}`);
-            configExists = true;
-          }
-          return configExists;
-        })
-        .catch((error) => {
-          console.error(error);
-          return configExists;
-        });
+      .search()
+      .then((result) => {
+        // result.config is the parsed configuration object.
+        // result.filepath is the path to the config file that was found.
+        // result.isEmpty is true if there was nothing to parse in the config file.
+        if (result?.isEmpty || !result?.config) {
+          console.error(`❌ No Config found\nSkip...`);
+        } else {
+          console.info(`✅ Config found: ${result.filepath}`);
+          configExists = true;
+        }
+        return configExists;
+      })
+      .catch((error) => {
+        console.error(error);
+        return configExists;
+      });
   }
 
   private static checkFileExists(path: string, rejectMessage: string, resolveMessage: string) {

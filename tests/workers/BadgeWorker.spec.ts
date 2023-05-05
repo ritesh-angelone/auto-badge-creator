@@ -1,7 +1,8 @@
-import { createMock } from "ts-auto-mock";
-import { Badge } from "../../src/workers/BadgeWorker"
-import { BadgeStatsInterface } from "../../src/interfaces/BadgeStatsInterface";
+import {createMock} from "ts-auto-mock";
+import {Badge} from "../../src/workers/BadgeWorker"
+import {BadgeStatsInterface} from "../../src/interfaces/BadgeStatsInterface";
 import {Globals} from "../../src/Globals";
+import {OutputType} from "../../src/enums/OutputType";
 
 describe('Badge', () => {
 
@@ -42,16 +43,16 @@ describe('Badge', () => {
       expect(result).toMatch(testString);
     })
 
-    it('should return only url if returnOnlyURL is true', () => {
-      Globals.init({returnOnlyURL: true});
+    it('should return only url if outputType is url', () => {
+      Globals.init({outputType: 'url' as OutputType});
       const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
       const testString: RegExp = /!\[\]\(.*\)/;
       const result = Badge.create({}, statsMock)
       expect(result).not.toMatch(testString);
     })
 
-    it('should return full markdown if returnOnlyURL is false', () => {
-      Globals.init({returnOnlyURL: false});
+    it('should return full markdown if outputType is markdown', () => {
+      Globals.init({outputType: 'markdown' as OutputType});
       const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
       const testString: RegExp = /!\[\]\(.*\)/;
       const result = Badge.create({}, statsMock)

@@ -1,4 +1,5 @@
 import { Globals } from "../src/Globals"
+import {OutputType} from "../lib/enums/OutputType";
 
 describe('Globals', () => {
 
@@ -8,9 +9,9 @@ describe('Globals', () => {
       expect(Globals.DEFAULT_COV_PATH).toEqual('./coverage/coverage-summary.json');
       expect(Globals.BASE_README_PATH).toEqual('./README.md');
       expect(Globals.BADGES).toEqual({});
-      expect(Globals.RETURN_ONLY_URL).toEqual(false);
-      expect(Globals.BASE_URL).toEqual('![](https://img.shields.io/badge/');
-      expect(Globals.BASE_URL_PATTERN).toEqual('\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)');
+      expect(Globals.OUTPUT_TYPE).toEqual(OutputType.MARKDOWN);
+      expect(Globals.BASE_URL).toEqual(Globals.MARKDOWN_BASE_URL);
+      expect(Globals.BASE_URL_PATTERN).toEqual(Globals.MARKDOWN_BASE_URL_PATTERN);
     })
     
     it('should take config property if exist', () => {
@@ -21,15 +22,16 @@ describe('Globals', () => {
           foo: {},
           bar: {}
         },
-        returnOnlyURL: true
+        outputType: 'url' as OutputType
       }
       Globals.init(config)
       expect(Globals.DEFAULT_COV_PATH).toEqual(config.coverage_file_path);
       expect(Globals.BASE_README_PATH).toEqual(config.readmeFilePath);
       expect(Globals.BADGES).toEqual(config.badges);
-      expect(Globals.RETURN_ONLY_URL).toEqual(config.returnOnlyURL);
-      expect(Globals.BASE_URL).toEqual('https://img.shields.io/badge/');
-      expect(Globals.BASE_URL_PATTERN).toEqual('https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&');
+      expect(Globals.OUTPUT_TYPE).toEqual(OutputType.URL);
+      expect(Globals.BASE_URL).toEqual(Globals.BADGE_BASE_URL);
+      expect(Globals.BASE_URL_PATTERN).toEqual(Globals.BADGE_BASE_URL_PATTERN);
+
     })
   })
 

@@ -1,57 +1,37 @@
-<h1>Coverage Badge Creator</h1>  
+<h1>Auto Badge Creator</h1>  
 <br>
 
-![](https://img.shields.io/badge/Coverage-97%25-83A603.svg?prefix=$coverage$)
-![CI][ci]
-![Build][build]
-![Code-Style][code-style]
+### Coverage
 
-[![MIT License][license-shield]][license-url]
-[![Release][release-shield]][release-url]
-![Maintenance][maintained-shield]
+![Coverage][coverage-shield]
+![Coverage Statements][coverage-statements-shield]
+![Coverage Branches][coverage-branches-shield]
+![Coverage Functions][coverage-functions-shield]
+![Coverage Lines][coverage-lines-shield]
 <br><br>
 
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#installation">Installation</a>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li>
-      <a href="#config">Config</a>
-      <ul>
-        <li><a href="#coverage-file-path">Coverage file path</a></li>
-        <li><a href="#badges">Badges</a></li>
-        <li><a href="#extended">Extended</a></li>
-      </ul>
-    </li>
-    <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#built-with">Built With</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
-
+<!-- TOC -->
+  * [About The Project](#about-the-project)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Config](#config)
+    * [coverage file path](#coverage-file-path)
+    * [README.md file path](#readmemd-file-path)
+    * [Output type](#output-type)
+    * [badges](#badges)
+    * [Extended](#extended)
+  * [Requirements](#requirements)
+  * [Built With](#built-with)
+<!-- TOC -->
 
 ## About The Project
-Coverage Badge Creator is a super easy to use tool for your project. It creates badges based on your test coverage and inserts them into the README. All without any third-party libraries or tools.
+Auto Badge Creator is a super easy to use tool for your project. It creates badges based on various parameters like [ test coverage ] and inserts them into the README.
 
 
 ## Installation
-[`npm`](https://www.npmjs.com/package/coverage-badge-creator):
+[`npm`](https://github.com/ritesh-angelone/auto-badge-creator):
 ```sh
-npm install --save-dev coverage-badge-creator
-```
-[`yarn`](https://yarnpkg.com/en/package/coverage-badge-creator):
-```sh
-yarn add --dev coverage-badge-creator
+npm install --save-dev https://github.com/ritesh-angelone/auto-badge-creator.git
 ```
 
 ## Usage
@@ -87,7 +67,7 @@ yarn add --dev coverage-badge-creator
     Add the command to your package.json scripts block:
     ```json
     "scripts": {
-      "coverage:badge": "coverage-badge-creator",
+      "coverage:badge": "auto-badge-creator",
     }   
     ```
     
@@ -106,12 +86,26 @@ There are various ways to provide configuration for the badges. This library sup
 4. a auto-badge-creatorrc, auto-badge-creatorrc.json, auto-badge-creatorrc.yaml, auto-badge-creatorrc.yml, auto-badge-creatorrc.js or auto-badge-creatorrc.cjs file inside a .config subdirectory
 5. a auto-badge-creator.config.js or auto-badge-creator.config.cjs CommonJS module exporting an object
 
-_For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-creator/blob/main/.conversion-badge-config)._
+_For a simple example click [here](https://github.com/ritesh-angelone/auto-badge-creator/blob/main/.badge-configrc)._
 
 ### coverage file path
 ```
 {
   coverage_file_path: './coverage/json-summary.json'
+}
+```
+
+### README.md file path
+```
+{
+  readmeFilePath: './README.md'
+}
+```
+
+### Output type
+```
+{
+  outputType: 'url' | 'markdown'
 }
 ```
 
@@ -155,7 +149,7 @@ _For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-cr
 
   ```sh
   "scripts": {
-    "coverage:badge": "coverage-badge-creator --config './badge-coverage-config.json'",
+    "coverage:badge": "coverage-badge-creator --config 'badge-config'",
   }
   ```
 
@@ -168,33 +162,6 @@ This section lists all programming languages and main frameworks.
 * [Node](https://nodejs.org/en/)
 * [Typescript](https://www.typescriptlang.org/)
 * [Jest](https://jestjs.io/)
-
-
-## Contributing
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/new_feature`)
-3. Commit your Changes (`git commit -m 'feat: Add new feature'`)
-4. Push to the Branch (`git push origin feature/new_feature`)
-5. Open a Pull Request
-
-
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-## Contact
-This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://github.com/H3nSte1n), for full list of contributors see the [contributors graph](https://github.com/H3nSte1n/coverage-badge-creator/graphs/contributors).
-
-
-## Acknowledgements
-* [Img Shields](https://shields.io)
-* [README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
-
-
-
-
 
 <!--shield-styles-->
 [style-plastic]: https://img.shields.io/badge/plastic-83A603.svg?style=plastic
@@ -220,13 +187,8 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 [link-reddit]: https://img.shields.io/badge/Reddit-83A603.svg?link=https://www.reddit.com/
 
 <!--infos-->
-[ci]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat
-[build]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat
-[code-style]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat
-[maintained-shield]: https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat
-[release-shield]: https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat
-[release-url]: https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/
-[issues-shield]: https://img.shields.io/github/issues/H3nSte1n/coverage-badge-creator.svg?style=flat
-[issues-url]: https://github.com/H3nSte1n/coverage-badge-creator/issues
-[license-shield]: https://img.shields.io/badge/License-MIT-yellow.svg?style=flat
-[license-url]: https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE
+[coverage-shield]: https://img.shields.io/badge/Coverage-96%25-83A603.svg?prefix=$coverage$
+[coverage-statements-shield]: https://img.shields.io/badge/Statements-99%25-83A603.svg?prefix=$statements$
+[coverage-branches-shield]: https://img.shields.io/badge/Branches-89%25-83A603.svg?prefix=$branches$
+[coverage-functions-shield]: https://img.shields.io/badge/Functions-100%25-83A603.svg?prefix=$functions$
+[coverage-lines-shield]: https://img.shields.io/badge/Lines-99%25-83A603.svg?prefix=$lines$
